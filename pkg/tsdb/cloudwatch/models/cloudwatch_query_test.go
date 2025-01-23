@@ -3,6 +3,7 @@ package models
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/aws/aws-sdk-go-v2/aws"
 	"sort"
 	"testing"
 	"time"
@@ -932,7 +933,6 @@ func Test_migrateAliasToDynamicLabel_single_query_preserves_old_alias_and_create
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
 			average := "Average"
-			false := false
 
 			queryToMigrate := metricsDataQuery{
 				CloudWatchMetricsQuery: dataquery.CloudWatchMetricsQuery{
@@ -945,7 +945,7 @@ func Test_migrateAliasToDynamicLabel_single_query_preserves_old_alias_and_create
 					},
 					Statistic: &average,
 					Period:    utils.Pointer("600"),
-					Hide:      &false,
+					Hide:      aws.Bool(false),
 				},
 			}
 

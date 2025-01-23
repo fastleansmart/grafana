@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/aws/aws-sdk-go/aws/endpoints"
+	"github.com/aws/aws-sdk-go-v2/service/cloudwatch"
 	"github.com/google/uuid"
 
 	"github.com/grafana/grafana-plugin-sdk-go/backend"
@@ -301,7 +301,7 @@ func ParseMetricDataQueries(dataQueries []backend.DataQuery, startTime time.Time
 
 func (q *CloudWatchQuery) applyMacros(startTime, endTime time.Time) {
 	if q.GetGetMetricDataAPIMode() == GMDApiModeMathExpression {
-		q.Expression = strings.ReplaceAll(q.Expression, "$__period_auto", strconv.Itoa(calculatePeriodBasedOnTimeRange(startTime, endTime)))
+		q.Expression = strings.ReplaceAll(q.Expression, "$__period_auto", strconv.Itoa(int(calculatePeriodBasedOnTimeRange(startTime, endTime))))
 	}
 }
 
@@ -504,13 +504,15 @@ func parseDimensions(dimensions dataquery.Dimensions) (map[string][]string, erro
 }
 
 func getEndpoint(region string) string {
-	partition, _ := endpoints.PartitionForRegion(endpoints.DefaultPartitions(), region)
-	url := defaultConsoleURL
-	if partition.ID() == endpoints.AwsUsGovPartitionID {
-		url = usGovConsoleURL
+	resolver := cloudwatch.NewDefaultEndpointResolver()
+	// err is currently not possible
+	endpoint, _ := resolver.ResolveEndpoint(region, cloudwatch.EndpointResolverOptions{})
+	consoleURL := defaultConsoleURL
+	switch endpoint.PartitionID {
+	case "aws-us-gov":
+		consoleURL = usGovConsoleURL
+	case "aws-cn":
+		consoleURL = chinaConsoleURL
 	}
-	if partition.ID() == endpoints.AwsCnPartitionID {
-		url = chinaConsoleURL
-	}
-	return fmt.Sprintf("%s.%s", region, url)
+	return fmt.Sprintf("%s.%s", region, consoleURL)
 }
