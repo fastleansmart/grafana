@@ -28,11 +28,6 @@ LBAC for data sources is currently available for `Loki, Prometheus` with basic a
 - Simplified data source management by consolidating multiple sources into one.
 - Dashboard reuse across teams with tailored access.
 
-{{< admonition type="note" >}}
-LBAC rules is available for **private preview** in Grafana Cloud.
-Report any unexpected behavior to the Grafana Support team.
-{{< /admonition >}}
-
 You can configure user access based upon team memberships using `LogQL`.
 LBAC for data sources controls access to logs or metrics depending on the rules set for each team.
 
@@ -54,10 +49,6 @@ LBAC for data sources enables you to filter access for both logs and metrics. By
 - **Metrics**: Control access to metric data points using LogQL with labels such as `job` or `region` and access for metrics `__name__`.
 
 This flexibility allows teams to use the same data source for multiple use cases while maintaining secure access boundaries.
-
-## Before you begin
-
-To be able to use LBAC for data sources, you need to enable the feature toggle `teamHttpHeaders` on your Grafana instance.
 
 ## Limitations
 
