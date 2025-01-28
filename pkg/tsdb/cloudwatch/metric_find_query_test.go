@@ -3,7 +3,6 @@ package cloudwatch
 import (
 	"context"
 	"encoding/json"
-	"github.com/grafana/grafana-aws-sdk/pkg/awsds"
 	"net/url"
 	"testing"
 
@@ -12,6 +11,7 @@ import (
 	"github.com/aws/aws-sdk-go-v2/service/resourcegroupstaggingapi"
 	resourcegroupstaggingapitypes "github.com/aws/aws-sdk-go-v2/service/resourcegroupstaggingapi/types"
 
+	"github.com/grafana/grafana-aws-sdk/pkg/awsds"
 	"github.com/grafana/grafana-plugin-sdk-go/backend"
 	"github.com/grafana/grafana-plugin-sdk-go/backend/datasource"
 	"github.com/grafana/grafana-plugin-sdk-go/backend/instancemgmt"
@@ -56,7 +56,6 @@ func TestQuery_InstanceAttributes(t *testing.T) {
 		sessionCache := fakeSessionCache{
 			credentialsProvider: func(_ context.Context, _ awsds.GetSessionConfig) (aws.CredentialsProvider, error) {
 				return &FakeCredentialsProvider{}, nil
-
 			},
 			calledRegions: nil,
 		}

@@ -2,6 +2,7 @@ package mocks
 
 import (
 	"context"
+
 	"github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs"
 	"github.com/stretchr/testify/mock"
 

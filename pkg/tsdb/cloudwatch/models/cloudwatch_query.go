@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/aws/aws-sdk-go-v2/service/cloudwatch"
+
 	"github.com/google/uuid"
 
 	"github.com/grafana/grafana-plugin-sdk-go/backend"
@@ -301,7 +302,7 @@ func ParseMetricDataQueries(dataQueries []backend.DataQuery, startTime time.Time
 
 func (q *CloudWatchQuery) applyMacros(startTime, endTime time.Time) {
 	if q.GetGetMetricDataAPIMode() == GMDApiModeMathExpression {
-		q.Expression = strings.ReplaceAll(q.Expression, "$__period_auto", strconv.Itoa(int(calculatePeriodBasedOnTimeRange(startTime, endTime))))
+		q.Expression = strings.ReplaceAll(q.Expression, "$__period_auto", strconv.Itoa(calculatePeriodBasedOnTimeRange(startTime, endTime)))
 	}
 }
 

@@ -2,10 +2,13 @@ package mocks
 
 import (
 	"context"
+
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/service/cloudwatch"
 	cloudwatchtypes "github.com/aws/aws-sdk-go-v2/service/cloudwatch/types"
+
 	"github.com/grafana/grafana/pkg/tsdb/cloudwatch/models"
+
 	"github.com/stretchr/testify/mock"
 )
 
@@ -40,7 +43,6 @@ func (c *FakeMetricsAPI) ListMetrics(_ context.Context, _ *cloudwatch.ListMetric
 		OwningAccounts: c.OwningAccounts,
 		NextToken:      nextToken,
 	}, nil
-
 }
 
 type MetricsAPI struct {
