@@ -29,12 +29,12 @@ require (
 	github.com/apache/arrow-go/v18 v18.0.1-0.20241212180703-82be143d7c30 // @grafana/plugins-platform-backend
 	github.com/armon/go-radix v1.0.0 // @grafana/grafana-app-platform-squad
 	github.com/aws/aws-sdk-go v1.55.5 // @grafana/aws-datasources
-	github.com/aws/aws-sdk-go-v2 v1.33.0
-	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.43.9
-	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.45.7
-	github.com/aws/aws-sdk-go-v2/service/ec2 v1.200.0
-	github.com/aws/aws-sdk-go-v2/service/oam v1.15.13
-	github.com/aws/aws-sdk-go-v2/service/resourcegroupstaggingapi v1.25.13
+	github.com/aws/aws-sdk-go-v2 v1.33.0 // @grafana/aws-datasources
+	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.43.9 // @grafana/aws-datasources
+	github.com/aws/aws-sdk-go-v2/service/cloudwatchlogs v1.45.7 // @grafana/aws-datasources
+	github.com/aws/aws-sdk-go-v2/service/ec2 v1.200.0 // @grafana/aws-datasources
+	github.com/aws/aws-sdk-go-v2/service/oam v1.15.13 // @grafana/aws-datasources
+	github.com/aws/aws-sdk-go-v2/service/resourcegroupstaggingapi v1.25.13 // @grafana/aws-datasources
 	github.com/beevik/etree v1.4.1 // @grafana/grafana-backend-group
 	github.com/benbjohnson/clock v1.3.5 // @grafana/alerting-backend
 	github.com/blang/semver/v4 v4.0.0 // indirect; @grafana/grafana-developer-enablement-squad
@@ -221,7 +221,7 @@ require (
 	github.com/grafana/grafana/pkg/storage/unified/resource v0.0.0-20250121113133-e747350fee2d // @grafana/grafana-search-and-storage
 )
 
-require github.com/aws/smithy-go v1.22.1
+require github.com/aws/smithy-go v1.22.1 // @grafana/aws-datasources
 
 require (
 	cel.dev/expr v0.19.0 // indirect
