@@ -47,6 +47,7 @@ const AnnoKeyRepoHash = "grafana.app/repoHash"
 const AnnoKeyRepoTimestamp = "grafana.app/repoTimestamp"
 
 // Annotations used to store manager properties
+
 const AnnoKeyManagerIdentity = "grafana.app/managerId"
 const AnnoKeyManagerKind = "grafana.app/managerType"
 const AnnoKeyManagerExclusive = "grafana.app/managerExclusive"
