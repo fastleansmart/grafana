@@ -153,21 +153,21 @@ func (e *cloudWatchExecutor) getRequestContext(ctx context.Context, pluginCtx ba
 		region = instance.Settings.Region
 	}
 
-	v2cfg, err := instance.newAWSConfig(ctx, defaultRegion)
+	cfg, err := instance.newAWSConfig(ctx, defaultRegion)
 	if err != nil {
 		return models.RequestContext{}, err
 	}
-	ec2client := NewEC2API(v2cfg)
+	ec2client := NewEC2API(cfg)
 
-	v2cfg, err = instance.newAWSConfig(ctx, region)
+	cfg, err = instance.newAWSConfig(ctx, region)
 	if err != nil {
 		return models.RequestContext{}, err
 	}
 
 	return models.RequestContext{
-		OAMAPIProvider:        NewOAMAPI(v2cfg),
-		MetricsClientProvider: clients.NewMetricsClient(NewCWClient(v2cfg), instance.Settings.GrafanaSettings.ListMetricsPageLimit),
-		LogsAPIProvider:       NewLogsAPI(v2cfg),
+		OAMAPIProvider:        NewOAMAPI(cfg),
+		MetricsClientProvider: clients.NewMetricsClient(NewCWClient(cfg), instance.Settings.GrafanaSettings.ListMetricsPageLimit),
+		LogsAPIProvider:       NewLogsAPI(cfg),
 		EC2APIProvider:        ec2client,
 		Settings:              instance.Settings,
 		Logger:                e.logger.FromContext(ctx),
