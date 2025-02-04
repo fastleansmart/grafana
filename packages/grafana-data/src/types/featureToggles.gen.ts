@@ -47,7 +47,6 @@ export interface FeatureToggles {
   nestedFolders?: boolean;
   alertingBacktesting?: boolean;
   editPanelCSVDragAndDrop?: boolean;
-  alertingNoNormalState?: boolean;
   logsContextDatasourceUi?: boolean;
   lokiShardSplitting?: boolean;
   lokiQuerySplitting?: boolean;
@@ -251,6 +250,7 @@ export interface FeatureToggles {
   queryLibraryDashboards?: boolean;
   grafanaAdvisor?: boolean;
   elasticsearchImprovedParsing?: boolean;
+  exploreMetricsUseExternalAppPlugin?: boolean;
   datasourceConnectionsTab?: boolean;
   fetchRulesUsingPost?: boolean;
   alertingAlertmanagerExtraDedupStage?: boolean;
