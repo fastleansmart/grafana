@@ -3741,16 +3741,16 @@
     {
       "metadata": {
         "name": "teamHttpHeaders",
-        "resourceVersion": "1738590709387",
+        "resourceVersion": "1738674693234",
         "creationTimestamp": "2023-10-17T10:23:54Z",
         "deletionTimestamp": "2025-01-24T14:39:15Z",
         "annotations": {
-          "grafana.app/updatedTimestamp": "2025-02-03 13:51:49.3871 +0000 UTC"
+          "grafana.app/updatedTimestamp": "2025-02-04 13:11:33.234396 +0000 UTC"
         }
       },
       "spec": {
         "description": "Enables LBAC for datasources to apply LogQL filtering of logs to the client requests for users in teams",
-        "stage": "preview",
+        "stage": "GA",
         "codeowner": "@grafana/identity-access-team",
         "allowSelfServe": true,
         "expression": "true"
