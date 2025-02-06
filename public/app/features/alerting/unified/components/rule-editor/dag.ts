@@ -1,4 +1,4 @@
-import { compact, isArray, memoize, uniq } from 'lodash';
+import { compact, memoize, uniq } from 'lodash';
 
 import { Edge, Graph, Node } from 'app/core/utils/dag';
 import { isExpressionQuery } from 'app/features/expressions/guards';
@@ -39,28 +39,29 @@ export function createDagFromQueries(queries: AlertQuery[]): Graph {
   });
 
   if (linkErrors.length > 0) {
-    throw new Error('failed to create DAG from queries', { cause: linkErrors });
+    throw new DAGError('failed to create DAG from queries', { cause: linkErrors });
   }
 
   return graph;
 }
 
-// determine if input error is a DAGError
-export function isDagError(error: unknown): error is DAGError {
-  return isArray((error as DAGError).cause) && (error as DAGError).cause.every((e) => 'source' in e && 'target' in e);
-}
-
-interface LinkError {
+export interface LinkError {
   source: string;
   target: string;
   error: unknown;
 }
 
-interface DAGError extends Error {
+/** DAGError subclass, this is just a regular error but with LinkError[] as the cause */
+export class DAGError extends Error {
+  constructor(message: string, options: { cause: LinkError[] }) {
+    super(message, options);
+    this.cause = options?.cause ?? [];
+  }
+
   cause: LinkError[];
 }
 
-function getTargets(model: ExpressionQuery) {
+export function getTargets(model: ExpressionQuery) {
   const isMathExpression = model.type === ExpressionQueryType.math;
   const isClassicCondition = model.type === ExpressionQueryType.classic;
 
