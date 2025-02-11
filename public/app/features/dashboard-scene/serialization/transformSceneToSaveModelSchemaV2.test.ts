@@ -29,6 +29,7 @@ import {
   ResponsiveGridLayoutSpec,
   RowsLayoutSpec,
 } from '../../../../../packages/grafana-schema/src/schema/dashboard/v2alpha0';
+import { ConditionalRendering } from '../conditional-rendering/ConditionalRendering';
 import { DashboardEditPane } from '../edit-pane/DashboardEditPane';
 import { DashboardAnnotationsDataLayer } from '../scene/DashboardAnnotationsDataLayer';
 import { DashboardControls } from '../scene/DashboardControls';
@@ -438,6 +439,7 @@ describe('dynamic layouts', () => {
                   ],
                 }),
               }),
+              $behaviors: [ConditionalRendering.createEmpty()],
             }),
           ],
         })
@@ -467,6 +469,7 @@ describe('dynamic layouts', () => {
                   ],
                 }),
               }),
+              $behaviors: [ConditionalRendering.createEmpty()],
             }),
             new RowItem({
               layout: new DefaultGridLayoutManager({
@@ -480,6 +483,7 @@ describe('dynamic layouts', () => {
                   ],
                 }),
               }),
+              $behaviors: [ConditionalRendering.createEmpty()],
             }),
           ],
         })
