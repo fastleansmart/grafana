@@ -339,6 +339,19 @@ func (s *Storage) Get(ctx context.Context, key string, opts storage.GetOptions, 
 	if err != nil {
 		return err
 	}
+
+	mmm, err := utils.MetaAccessor(objPtr)
+	if err != nil {
+		return err
+	}
+
+	// restore the full original object before updating it
+	if s.opts.LargeObjectSupport != nil && mmm.GetBlob() != nil {
+		err = s.opts.LargeObjectSupport.Reconstruct(ctx, req.Key, s.store, mmm)
+		if err != nil {
+			return err
+		}
+	}
 	return s.versioner.UpdateObject(objPtr, uint64(rsp.ResourceVersion))
 }
 
